@@ -1,23 +1,41 @@
 import { useState } from 'react';
 
-const CurrencyConverter = () => {
-  const [currency, setCurrency] = useState('');
+const CurrencyConverterComponent = () => {
+  const [sourceCurrency, setSourceCurrency] = useState('');
+  const [targetCurrency, setTargetCurrency] = useState('');
   const [amount, setAmount] = useState(0);
   const [convertedAmount, setConvertedAmount] = useState(0);
 
-  const handleConvert = () => {
-    // Conversion logic here
-    // This is a placeholder, replace with actual conversion logic
-    setConvertedAmount(amount * 1.2);
+  const handleConvert = async () => {
+    const response = await fetch('/api/convertCurrency', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount,
+        sourceCurrency,
+        targetCurrency,
+      }),
+    });
+    const data = await response.json();
+    setConvertedAmount(data.convertedAmount);
   };
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4">
       <input
         type="text"
-        placeholder="Currency"
-        value={currency}
-        onChange={(e) => setCurrency(e.target.value)}
+        placeholder="Source Currency"
+        value={sourceCurrency}
+        onChange={(e) => setSourceCurrency(e.target.value)}
+        className="p-2 border border-gray-300 rounded-md"
+      />
+      <input
+        type="text"
+        placeholder="Target Currency"
+        value={targetCurrency}
+        onChange={(e) => setTargetCurrency(e.target.value)}
         className="p-2 border border-gray-300 rounded-md"
       />
       <input
@@ -40,4 +58,4 @@ const CurrencyConverter = () => {
   );
 };
 
-export default CurrencyConverter;
+export default CurrencyConverterComponent;
