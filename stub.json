@@ -1,1 +1,1 @@
-{"config":{"system_prompt":"","model":"","temperature":0,"top_p":1,"framework":"nextjs-page-tailwind"},"prompts":[{"prompt":"I need a currency converter application","md5":"0b12309b2fd1b6ef4e5123793e01e14d"}]}
+{"config":{"system_prompt":"","model":"","temperature":0,"top_p":1,"framework":"nextjs-page-tailwind"},"prompts":[{"prompt":"write a currency converter component and add it to the index page. Make it well styled","md5":"1bdd1068fa25e33dd7b348a9f065b396"}]}
